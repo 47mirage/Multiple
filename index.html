@@ -549,8 +549,17 @@
                                                     <span id="venueNameScrollContainer"
                                                         style="width: 100%; white-space: nowrap; display: flex; overflow: hidden; gap: 1rem;">
                                                         <span id="venueNameContainer" class=""
-                                                            style="display: inline-block;">
+                                                            style="display: inline-flex; align-items: center; gap: 0.8rem;">
+                                                            <!-- 会場名 -->
                                                             <span id="venueName"
+                                                                class="Typography_root__axuOu Typography_ellipsis__1pl2K"
+                                                                style="--color: var(--b5); --bg-color: var(--undefined); --line-num: 1; font-size: 1.2rem; font-weight: 600;"></span>
+                                                    
+                                                            <!-- ★ 縦線（曜日のところと同じクラス） -->
+                                                            <div id="eventInfoDivider" class="TicketCard_border__FPpdW" style="display: none;"></div>
+                                                    
+                                                            <!-- ★ XMAS day1 みたいな補足情報 -->
+                                                            <span id="eventInfo"
                                                                 class="Typography_root__axuOu Typography_ellipsis__1pl2K"
                                                                 style="--color: var(--b5); --bg-color: var(--undefined); --line-num: 1; font-size: 1.2rem; font-weight: 600;"></span>
                                                         </span>
@@ -721,7 +730,7 @@
         </div>
     </div>
     <script>
-        const ticketInfoBase = {"eventName":"iON! × MEGAFON 2MAN LIVE 『シャウトダ!!! vol.2』","eventImage":"hThwpP4BS1p5KVXJ9e3a_878369_1764405682363.jpeg","_date":{"year":2025,"month":12,"day":4},"openVenue":"17:30","startTime":"18:00","venueName":"WOMBLIVE","ticketType":"前方チケット","prefix":"S"};
+        const ticketInfoBase = {"eventName":"iON! × MEGAFON 2MAN LIVE 『シャウトダ!!! vol.2』","eventImage":"hThwpP4BS1p5KVXJ9e3a_878369_1764405682363.jpeg","_date":{"year":2025,"month":12,"day":4},"openVenue":"17:30","startTime":"18:00","venueName":"WOMBLIVE","ticketType":"前方チケット","prefix":"S",eventInfo: "XMAS day1"};
         const ticketInfo = {
             ...ticketInfoBase,
             favoriteName: "のんふぃく！",
@@ -832,6 +841,8 @@
             const venueName = document.getElementById('venueName');
             const date = document.getElementById('date');
             const day = document.getElementById('day');
+            const eventInfo = document.getElementById('eventInfo');
+            const eventInfoDivider = document.getElementById('eventInfoDivider');
             const openVenue = document.getElementById('openVenue');
             const startTime = document.getElementById('startTime');
             const holderName = document.getElementById('holderName');
@@ -864,6 +875,13 @@
                 if (clone) clone.remove();
             }
             venueName.textContent = ticketInfo.venueName;
+            if (ticketInfo.eventInfo) {
+                eventInfo.textContent = ticketInfo.eventInfo;
+                eventInfoDivider.style.display = 'block';
+            } else {
+                eventInfo.textContent = '';
+                eventInfoDivider.style.display = 'none';
+            }
             if (isSpanOverflowing(venueNameContainer)) {
                 venueName.classList.add('ScrollAnimation_textScroll__9K9Zh');
                 if (!document.getElementById('venueNameContainerClone')) {
