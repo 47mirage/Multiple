@@ -883,14 +883,14 @@
                 eventInfoDivider.style.display = 'none';
             }
             if (isSpanOverflowing(venueNameContainer)) {
-                venueName.classList.add('ScrollAnimation_textScroll__9K9Zh');
+                venueNameContainer.classList.add('ScrollAnimation_textScroll__9K9Zh');
                 if (!document.getElementById('venueNameContainerClone')) {
                     const clone = venueNameContainer.cloneNode(true);
                     clone.id = 'venueNameContainerClone';
                     venueNameScrollContainer.appendChild(clone);
                 }
             } else {
-                venueName.classList.remove('ScrollAnimation_textScroll__9K9Zh');
+                venueNameContainer.classList.remove('ScrollAnimation_textScroll__9K9Zh');
                 const clone = document.getElementById('venueNameContainerClone');
                 if (clone) clone.remove();
             }
